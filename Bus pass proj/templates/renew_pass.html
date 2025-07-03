@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Pass Renewal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container colorful-bg">
+        <h2>Renew Your Bus Pass</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:green;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="text" name="old_pass_no" placeholder="Old Bus Pass Number" required>
+            <label>ID Proof Upload:</label>
+            <input type="file" name="id_proof" required>
+            <label>Old Pass Copy (optional):</label>
+            <input type="file" name="old_pass_copy">
+            <button type="submit" class="btn colorful-btn">Submit Renewal</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+    </div>
+</body>
+</html>
